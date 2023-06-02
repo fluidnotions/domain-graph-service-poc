@@ -1,8 +1,5 @@
 type Query {
     shows(titleFilter: String): [Show]
+    books(authorFilter: String): [Book]
 }
 
-type Show {
-    title: String
-    releaseYear: Int
-}
