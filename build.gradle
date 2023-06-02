@@ -26,3 +26,8 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+generateJava {
+    packageName = 'com.fluidnotions.graphql.generated'
+    generateClient = true
+}

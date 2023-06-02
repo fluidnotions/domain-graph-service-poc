@@ -1,9 +1,10 @@
 package com.fluidnotions.databases.fake;
 
-import com.netflix.dgs.codegen.generated.types.Address;
-import com.netflix.dgs.codegen.generated.types.Author;
-import com.netflix.dgs.codegen.generated.types.Book;
-import com.netflix.dgs.codegen.generated.types.ReleaseHistory;
+
+import com.fluidnotions.graphql.generated.types.Address;
+import com.fluidnotions.graphql.generated.types.Author;
+import com.fluidnotions.graphql.generated.types.Book;
+import com.fluidnotions.graphql.generated.types.ReleaseHistory;
 import jakarta.annotation.PostConstruct;
 import net.datafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
