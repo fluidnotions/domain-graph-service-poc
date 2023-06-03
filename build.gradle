@@ -17,6 +17,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:latest.release"))
+    implementation 'com.netflix.graphql.dgs:graphql-dgs-extended-scalars'
     implementation "com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter"
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
@@ -31,4 +32,9 @@ tasks.named('test') {
 generateJava {
     packageName = 'com.fluidnotions.graphql.generated'
     generateClient = true
+    typeMapping = [
+            "Date"          : "java.time.LocalDate",
+            "NonNegativeInt": "java.lang.Integer",
+            "Url"           : "java.net.URL"
+    ]
 }

@@ -7,11 +7,10 @@ import com.fluidnotions.graphql.generated.types.MobileAppFilter;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsData;
 import com.netflix.graphql.dgs.InputArgument;
-import io.micrometer.common.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -19,6 +18,8 @@ import java.util.stream.Collectors;
 public class MobileAppResolver {
     private static final Logger logger = LoggerFactory.getLogger(MobileAppResolver.class);
 
+
+    //FIXME: debug the use of reflection to create a more dynamic filter based on the MobileAppFilter class, however it may be changed
     //    @DgsData(parentType = DgsConstants.QUERY_TYPE, field = "mobileApps")
     public List<MobileApp> mobileAppsCustom(@InputArgument Optional<MobileAppFilter> mobileAppFilter) {
         var mobileApps = FakeMobileAppDataSource.MOBILE_APP_LIST;
@@ -77,15 +78,16 @@ public class MobileAppResolver {
         ).collect(Collectors.toList());
     }
 
+    //FIXME: cleanup code and remove the need for org.apache.commons:commons-lang3:3.12.0
     private boolean matchFilter(MobileAppFilter mobileAppFilter, MobileApp mobileApp) {
         var isAppMatch = StringUtils.containsIgnoreCase(mobileApp.getName(),
                 StringUtils.defaultIfBlank(mobileAppFilter.getName(), StringUtils.EMPTY))
                 && StringUtils.containsIgnoreCase(mobileApp.getVersion(),
-                StringUtils.defaultIfBlank(mobileAppFilter.getVersion(), StringUtils.EMPTY))
-                && mobileApp.getReleaseDate().isAfter(
-                Optional.ofNullable(mobileAppFilter.getReleasedAfter()).orElse(LocalDate.MIN))
-                && mobileApp.getDownloaded() >=
-                Optional.ofNullable(mobileAppFilter.getMinimumDownload()).orElse(0);
+                StringUtils.defaultIfBlank(mobileAppFilter.getVersion(), StringUtils.EMPTY));
+//                && mobileApp.getReleaseDate().isAfter(
+//                Optional.ofNullable(mobileAppFilter.getReleasedAfter()).orElse(LocalDate.MIN))
+//                && mobileApp.getDownloaded() >=
+//                Optional.ofNullable(mobileAppFilter.getMinimumDownload()).orElse(0);
 
         if (!isAppMatch) {
             return false;
@@ -99,6 +101,12 @@ public class MobileAppResolver {
         if (mobileAppFilter.getAuthor() != null
                 && !StringUtils.containsIgnoreCase(mobileApp.getAuthor().getName(),
                 StringUtils.defaultIfBlank(mobileAppFilter.getAuthor().getName(), StringUtils.EMPTY))) {
+            return false;
+        }
+
+        if (mobileAppFilter.getAuthor() != null
+                && !StringUtils.containsIgnoreCase(mobileApp.getAuthor().getOriginCountry(),
+                StringUtils.defaultIfBlank(mobileAppFilter.getAuthor().getOriginCountry(), StringUtils.EMPTY))) {
             return false;
         }
 
