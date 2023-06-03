@@ -1,4 +1,4 @@
-# DGS Federated GraphQL
+# DGS Federated GraphQL WIP
 
 ## Synopsis
 
