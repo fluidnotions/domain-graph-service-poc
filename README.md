@@ -25,3 +25,9 @@ But the specific focus on DGS is what makes the course valuable.
   microservices, which in turn improves both deployability and individual testability.
 * Overall, a federated GraphQL approach to microservice architecture promotes a modular, scalable, and resilient system
   that is easy to deploy and test.
+ 
+ ## Notes
+ 
+ DGS's schema first approach may lend itself well to db decomposition via tools like [db2graphql](https://github.com/taviroquai/db2graphql)
+  
+  
