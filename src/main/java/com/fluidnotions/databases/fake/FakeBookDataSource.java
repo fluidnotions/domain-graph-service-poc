@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
 
 @Configuration
 public class FakeBookDataSource {
@@ -41,7 +41,7 @@ public class FakeBookDataSource {
                     .released(released)
                     .build();
 
-            for (int j = 0; j < ThreadLocalRandom.current().nextInt(1, 3); j++) {
+            for (int j = 0; j < new Random().nextInt(1, 3); j++) {
                 var address = Address.newBuilder()
                         .country(faker.address().country())
                         .city(faker.address().cityName())

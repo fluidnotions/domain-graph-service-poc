@@ -2,6 +2,8 @@ scalar Url
 scalar Date
 scalar NonNegativeInt
 
+union SmartSearchResults = Show | Book
+
 type Query {
     shows(titleFilter: String): [Show]
     books(authorFilter: String): [Book]
@@ -9,5 +11,26 @@ type Query {
     # overloading is not possible in gql therefore flexibility is achieved using input types with multiple fields, which determine how the resolver should behave
     mobileApps(mobileAppFilter: MobileAppFilter): [MobileApp]
     pets(petFilter: PetFilter): [Pet]
+    """
+    Example of a query with a union type:
+    query ($keyword: String!){
+    smartSearch(keyword: $keyword) {
+    __typename
+
+    ...on Show {
+    releaseYear
+    showTitle: title
+    __typename
+    }
+
+    ...on Book {
+    title
+    publisher
+    __typename
+    }
+    }
+    }
+    """
+    smartSearch(keyword: String!): [SmartSearchResults]
 }
 

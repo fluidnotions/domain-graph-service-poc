@@ -8,13 +8,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @SpringBootTest
-public class DummyResolverTest {
+public class ShowResolverTest {
 
     @Autowired
     private DgsQueryExecutor dgsQueryExecutor;
 
     @Test
-    void testShows(){
+    void testShows() {
         var query = """
                 {
                   shows(titleFilter: "") {
