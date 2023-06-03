@@ -34,6 +34,7 @@ type Query {
     </pre>
     """
     smartSearch(keyword: String!): [SmartSearchResults]
+    headerEcho: String
 }
 
 type Mutation{
