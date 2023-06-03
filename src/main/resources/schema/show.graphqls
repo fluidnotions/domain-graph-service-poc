@@ -1,4 +1,5 @@
 type Show {
-    title: String
-    releaseYear: Int
+    title: String!
+    releaseYear: Int!
+    description: String
 }

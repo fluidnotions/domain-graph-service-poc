@@ -13,24 +13,31 @@ type Query {
     pets(petFilter: PetFilter): [Pet]
     """
     Example of a query with a union type:
-    query ($keyword: String!){
-    smartSearch(keyword: $keyword) {
-    __typename
+    <pre>
+        query ($keyword: String!){
+            smartSearch(keyword: $keyword) {
+                __typename
 
-    ...on Show {
-    releaseYear
-    showTitle: title
-    __typename
-    }
+                ...on Show {
+                    releaseYear
+                    showTitle: title
+                    __typename
+                }
 
-    ...on Book {
-    title
-    publisher
-    __typename
-    }
-    }
-    }
+                ...on Book {
+                    title
+                    publisher
+                    __typename
+                }
+            }
+        }
+    </pre>
     """
     smartSearch(keyword: String!): [SmartSearchResults]
 }
 
+type Mutation{
+    addShow(title: String!, releaseYear: Int!): Int
+    deleteShow(title: String!): Int
+    updateShow(title: String!, description: String!): [Show]
+}

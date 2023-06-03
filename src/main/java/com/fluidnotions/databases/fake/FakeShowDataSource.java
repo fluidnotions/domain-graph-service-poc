@@ -18,11 +18,11 @@ public class FakeShowDataSource {
     @PostConstruct
     void postConstruct() {
         List.of(
-                new Show("Stranger Things", 2016),
-                new Show("Ozark", 2017),
-                new Show("The Crown", 2016),
-                new Show("Dead to Me", 2019),
-                new Show("Orange is the New Black", 2013)
+                new Show("Stranger Things", 2016, null),
+                new Show("Ozark", 2017, null),
+                new Show("The Crown", 2016, null),
+                new Show("Dead to Me", 2019, null),
+                new Show("Orange is the New Black", 2013, null)
         ).stream().forEach(SHOWS::add);
     }
 }
