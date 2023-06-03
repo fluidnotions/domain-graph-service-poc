@@ -2,5 +2,7 @@ type Query {
     shows(titleFilter: String): [Show]
     books(authorFilter: String): [Book]
     booksByReleased(releasedInput: ReleaseHistoryInput!): BookList
+    # overloading is not possible in gql therefore flexibility is achieved using input types with multiple fields, which determine how the resolver should behave
+    mobileApps(mobileAppFilter: MobileAppFilter): [MobileApp]
 }
 
