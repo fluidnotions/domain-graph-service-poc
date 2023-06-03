@@ -1,0 +1,37 @@
+"""
+GraphQL interfaces allow developers to define a set of fields that can be implemented by multiple GraphQL types. This allows for more flexibility in the GraphQL schema design, as it enables the creation of a common set of fields that can be shared across different types.
+Using an interface in GraphQL, we can define a set of fields that can be used in multiple types and implement the interface on each type. Any query that asks for fields defined in the interface will work with any of the types that implement the interface.
+This feature is particularly useful when we have a similar set of fields that need to be implemented by different types but have some subtle differences. Instead of duplicating these fields in each type definition, we can define the interface and implement it in each type. This way, we can avoid duplication and enforce consistency across all types that implement the interface.
+Overall, the use of interfaces in GraphQL helps to improve maintainability, extensibility, and reusability of the GraphQL schema.
+"""
+
+enum PetFoodType{
+    OMNIVORE, HERBIVORE, CARNIVORE
+}
+
+interface Pet{
+    name: String!
+    food: PetFoodType!
+    breed: String!
+}
+
+type Dog implements Pet{
+    name: String!
+    food: PetFoodType!
+    breed: String!
+    size: String!
+    coatLength: String!
+}
+
+type Cat implements Pet{
+    name: String!
+    food: PetFoodType!
+    breed: String!
+    color: String!
+    registry: String!
+}
+
+input PetFilter{
+    petType: String
+    foodType: PetFoodType
+}

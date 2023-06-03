@@ -3,12 +3,15 @@ package com.fluidnotions.databases.fake;
 import com.fluidnotions.graphql.generated.types.Address;
 import com.fluidnotions.graphql.generated.types.Author;
 import com.fluidnotions.graphql.generated.types.MobileApp;
+import com.fluidnotions.graphql.generated.types.MobileAppCategory;
 import jakarta.annotation.PostConstruct;
 import net.datafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -36,12 +39,12 @@ public class FakeMobileAppDataSource {
                     .author(author).version(faker.app().version())
                     .platform(randomMobileAppPlatform())
                     .appId(UUID.randomUUID().toString())
-//                    .releaseDate(LocalDate.now().minusDays(faker.random().nextInt(365)))
-//                    .downloaded(faker.number().numberBetween(1, 1_500_000))
-//                    .homepage(new URL("https://" + faker.internet().url()))
-//                    .category(MobileAppCategory.values()[
-//                            faker.random().nextInt(MobileAppCategory.values().length)]
-//                    )
+                    .releaseDate(LocalDate.now().minusDays(faker.random().nextInt(365)))
+                    .downloaded(faker.number().numberBetween(1, 1_500_000))
+                    .homepage(new URL("https://" + faker.internet().url()))
+                    .category(MobileAppCategory.values()[
+                            faker.random().nextInt(MobileAppCategory.values().length)]
+                    )
                     .build();
 
             Random random = new Random();

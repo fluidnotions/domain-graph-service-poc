@@ -7,7 +7,7 @@ type MobileApp {
     releaseDate: Date
     downloaded: NonNegativeInt
     homepage: Url
-    #    category: MobileAppCategory
+    category: MobileAppCategory
 }
 
 input MobileAppFilter {
@@ -17,7 +17,7 @@ input MobileAppFilter {
     author: AuthorFilter
     releasedAfter: Date
     minimumDownload: NonNegativeInt
-    #    category: MobileAppCategory
+    category: MobileAppCategory
 }
 
 input AuthorFilter {
@@ -25,6 +25,6 @@ input AuthorFilter {
     originCountry: String
 }
 
-#enum MobileAppCategory {
-#    GAME, PRODUCTIVITY, FINANCE, EDUCATION
-#}
+enum MobileAppCategory {
+    GAME, PRODUCTIVITY, FINANCE, EDUCATION
+}

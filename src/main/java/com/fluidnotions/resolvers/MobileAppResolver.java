@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -83,11 +84,11 @@ public class MobileAppResolver {
         var isAppMatch = StringUtils.containsIgnoreCase(mobileApp.getName(),
                 StringUtils.defaultIfBlank(mobileAppFilter.getName(), StringUtils.EMPTY))
                 && StringUtils.containsIgnoreCase(mobileApp.getVersion(),
-                StringUtils.defaultIfBlank(mobileAppFilter.getVersion(), StringUtils.EMPTY));
-//                && mobileApp.getReleaseDate().isAfter(
-//                Optional.ofNullable(mobileAppFilter.getReleasedAfter()).orElse(LocalDate.MIN))
-//                && mobileApp.getDownloaded() >=
-//                Optional.ofNullable(mobileAppFilter.getMinimumDownload()).orElse(0);
+                StringUtils.defaultIfBlank(mobileAppFilter.getVersion(), StringUtils.EMPTY))
+                && mobileApp.getReleaseDate().isAfter(
+                Optional.ofNullable(mobileAppFilter.getReleasedAfter()).orElse(LocalDate.MIN))
+                && mobileApp.getDownloaded() >=
+                Optional.ofNullable(mobileAppFilter.getMinimumDownload()).orElse(0);
 
         if (!isAppMatch) {
             return false;
@@ -107,6 +108,12 @@ public class MobileAppResolver {
         if (mobileAppFilter.getAuthor() != null
                 && !StringUtils.containsIgnoreCase(mobileApp.getAuthor().getOriginCountry(),
                 StringUtils.defaultIfBlank(mobileAppFilter.getAuthor().getOriginCountry(), StringUtils.EMPTY))) {
+            return false;
+        }
+
+        if (mobileAppFilter.getCategory() != null
+                && !mobileAppFilter.getCategory().equals(mobileApp.getCategory())
+        ) {
             return false;
         }
 
