@@ -5,7 +5,7 @@
 This is a sample project that demonstrates how to use [Netflix DGS](https://netflix.github.io/dgs/) to build a federated
 GraphQL API.  
 It's a wip based on the content presented in [Code GraphQL Application : Java Spring Boot 3 & Netflix DGS  
-](https://www.udemy.com/course/code-graphql-application-with-java-spring-boot-netflix-dgs/).   
+](https://www.udemy.com/course/code-graphql-application-with-java-spring-boot-netflix-dgs/)   
 The interesting thing about the course is the code isn't optimal, but that provides opportunities to refactor and
 explore Java 17 language features.   
 But the specific focus on DGS is what makes the course valuable.
