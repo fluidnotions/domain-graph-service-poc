@@ -1,6 +1,7 @@
 scalar Url
 scalar Date
 scalar NonNegativeInt
+scalar DateTime
 
 union SmartSearchResults = Show | Book
 
@@ -41,4 +42,8 @@ type Mutation{
     addShow(title: String!, releaseYear: Int!): Int
     deleteShow(title: String!): Int
     updateShow(title: String!, description: String!): [Show]
+}
+
+type Subscription {
+    randomStock: Stock
 }
