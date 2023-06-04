@@ -1,4 +1,4 @@
-package com.fluidnotions.resolvers;
+package com.fluidnotions.components.fake.resolvers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fluidnotions.graphql.generated.DgsConstants;

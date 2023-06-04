@@ -35,5 +35,6 @@ But the specific focus on DGS is what makes the course valuable.
 ### To Do
 
 * use jpa buddy to create entities from db schema
+* bean mapping library eg: [MapStruct](https://mapstruct.org/)
   
   

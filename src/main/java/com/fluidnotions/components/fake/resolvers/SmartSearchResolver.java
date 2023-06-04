@@ -1,4 +1,4 @@
-package com.fluidnotions.resolvers;
+package com.fluidnotions.components.fake.resolvers;
 
 import com.fluidnotions.databases.fake.FakeBookDataSource;
 import com.fluidnotions.databases.fake.FakeShowDataSource;
