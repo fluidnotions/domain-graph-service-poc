@@ -1,10 +1,12 @@
 package com.fluidnotions.databases.stackunderflow.entity;
 
-import jakarta.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -21,21 +23,21 @@ public class Problemz {
     private String content;
     private String tags;
 
-    @OneToMany(mappedBy = "problemz")
-    @OrderBy("creationTimestamp desc")
-    private List<Solutionz> solutions;
+//    @OneToMany(mappedBy = "problemz")
+//    @OrderBy("creationTimestamp desc")
+//    private List<Solutionz> solutions;
 
     @ManyToOne
     @JoinColumn(name = "created_by", nullable = false)
     private Userz createdBy;
 
-    public List<Solutionz> getSolutions() {
-        return solutions;
-    }
-
-    public void setSolutions(List<Solutionz> solutions) {
-        this.solutions = solutions;
-    }
+//    public List<Solutionz> getSolutions() {
+//        return solutions;
+//    }
+//
+//    public void setSolutions(List<Solutionz> solutions) {
+//        this.solutions = solutions;
+//    }
 
     public Userz getCreatedBy() {
         return createdBy;

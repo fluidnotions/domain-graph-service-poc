@@ -11,10 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.ZoneOffset;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class GraphQLBeanMapping {
     private static final Logger logger = LoggerFactory.getLogger(GraphQLBeanMapping.class);
@@ -41,21 +39,26 @@ public class GraphQLBeanMapping {
         var result = new Problem();
         var createDateTime = original.getCreationTimestamp().atOffset(ZONE_OFFSET);
         var author = mapToGraphql(original.getCreatedBy());
-        var convertedSolutions = original.getSolutions().stream()
-//                .sorted(Comparator.comparing(Solutionz::getCreationTimestamp).reversed())
-                .map(GraphQLBeanMapping::mapToGraphql)
-                .collect(Collectors.toList());
+
         var tagList = List.of(original.getTags().split(","));
 
         result.setAuthor(author);
         result.setContent(original.getContent());
         result.setCreateDateTime(createDateTime.toLocalDateTime());
         result.setId(original.getId().toString());
-        result.setSolutions(convertedSolutions);
+
         result.setTags(tagList);
         result.setTitle(original.getTitle());
-        result.setSolutionCount(convertedSolutions.size());
+
         result.setPrettyCreateDateTime(PRETTY_TIME.format(createDateTime));
+
+//            var convertedSolutions = original.getSolutions().stream()
+//                .sorted(Comparator.comparing(Solutionz::getCreationTimestamp).reversed())
+//                    .map(GraphQLBeanMapping::mapToGraphql)
+//                    .collect(Collectors.toList());
+//            result.setSolutionCount(convertedSolutions.size());
+//            result.setSolutions(convertedSolutions);
+
 
         return result;
     }
@@ -96,7 +99,7 @@ public class GraphQLBeanMapping {
         result.setContent(original.getContent());
         result.setCreatedBy(author);
         result.setId(UUID.randomUUID());
-        result.setSolutions(Collections.emptyList());
+//        result.setSolutions(Collections.emptyList());
         result.setTags(String.join(",", original.getTags()));
         result.setTitle(original.getTitle());
 
