@@ -9,9 +9,9 @@ spring:
   main:
     banner-mode: OFF
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=problemz
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=stackunderflow
     username: postgres
-    password: postgres
+    password: admin
   jpa:
     hibernate:
       ddl-auto: none

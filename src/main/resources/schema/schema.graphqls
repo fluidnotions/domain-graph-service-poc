@@ -36,14 +36,33 @@ type Query {
     """
     smartSearch(keyword: String!): [SmartSearchResults]
     headerEcho: String
+
+    #stack underflow example
+    # create input types for more flexibility and extensibility for queries
+    me: User!
+    problemLatestList: [Problem!]
+    itemSearch(filter: SearchInput): [SearchableItem]
+    problemDetail(id: ID!): Problem
 }
 
 type Mutation{
     addShow(title: String!, releaseYear: Int!): Int
     deleteShow(title: String!): Int
     updateShow(title: String!, description: String!): [Show]
+
+    #stack underflow example
+    # on mutation types input is generally more specific
+    userCreate(input: UserCreateInput!): UserResponse!
+    userLogin(input: UserLoginInput!): UserResponse!
+    userActivate(input: UserActivateInput!): UserActivateResponse!
+    problemCreate(input: ProblemCreateInput!): ProblemResponse!
+    solutionCreate(input: SolutionCreateInput!): SolutionResponse!
+    solutionVote(input: SolutionVoteInput!): SolutionResponse!
 }
 
 type Subscription {
     randomStock: Stock
+    #stack underflow example
+    problemAdded: Problem!
+    solutionVoteChanged: Solution!
 }

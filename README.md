@@ -25,9 +25,15 @@ But the specific focus on DGS is what makes the course valuable.
   microservices, which in turn improves both deployability and individual testability.
 * Overall, a federated GraphQL approach to microservice architecture promotes a modular, scalable, and resilient system
   that is easy to deploy and test.
- 
- ## Notes
- 
- DGS's schema first approach may lend itself well to db decomposition via tools like [db2graphql](https://github.com/taviroquai/db2graphql)
+
+## Additional Tools
+
+* DGS's schema first approach may lend itself well to db decomposition via tools
+  like [db2graphql](https://github.com/taviroquai/db2graphql)
+* Plugin to create jpa entities from existing db schema: [JPA Buddy](https://jpa-buddy.com/documentation/)
+
+### To Do
+
+* use jpa buddy to create entities from db schema
   
   
