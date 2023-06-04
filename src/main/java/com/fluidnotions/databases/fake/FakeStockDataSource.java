@@ -17,7 +17,7 @@ public class FakeStockDataSource {
     private Faker faker;
 
     public Stock randomStock() {
-        return Stock.newBuilder().lastTradeDateTime(OffsetDateTime.now().toLocalDateTime())
+        return Stock.newBuilder().lastTradeDateTime(OffsetDateTime.now())
                 .price(faker.random().nextInt(100, 1000))
                 .symbol(faker.stock().nyseSymbol())
                 .build();

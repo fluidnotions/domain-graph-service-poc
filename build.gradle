@@ -35,6 +35,15 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+//sourceSets {
+//    main {
+//        java {
+//            exclude 'java/com/fluidnotions/databases/stackunderflow/util/GraphQLBeanMapping.java'
+//        }
+//    }
+//}
+
+
 generateJava {
     packageName = 'com.fluidnotions.graphql.generated'
     generateClient = true
@@ -42,6 +51,6 @@ generateJava {
             "Date"          : "java.time.LocalDate",
             "NonNegativeInt": "java.lang.Integer",
             "Url"           : "java.net.URL",
-            "DateTime"      : "java.time.LocalDateTime"
+            "DateTime"      : "java.time.OffsetDateTime"
     ]
 }

@@ -1,20 +1,23 @@
 package com.fluidnotions.databases.stackunderflow.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "solutionz")
+//@Table(name = "solutionz")
 public class Solutionz {
 
     @Id
     private UUID id;
 
     @CreationTimestamp
-    private LocalDateTime creationTimestamp;
+    private OffsetDateTime creationTimestamp;
 
     private String content;
     private String category;
@@ -53,11 +56,11 @@ public class Solutionz {
         this.id = id;
     }
 
-    public LocalDateTime getCreationTimestamp() {
+    public OffsetDateTime getCreationTimestamp() {
         return creationTimestamp;
     }
 
-    public void setCreationTimestamp(LocalDateTime creationTimestamp) {
+    public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
         this.creationTimestamp = creationTimestamp;
     }
 

@@ -2,22 +2,21 @@ package com.fluidnotions.databases.stackunderflow.entity;
 
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Id;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "problemz")
+//@Table(name = "problemz")
 public class Problemz {
 
     @Id
     private UUID id;
 
     @CreationTimestamp
-    private LocalDateTime creationTimestamp;
+    private OffsetDateTime creationTimestamp;
 
     private String title;
     private String content;
@@ -27,9 +26,9 @@ public class Problemz {
 //    @OrderBy("creationTimestamp desc")
 //    private List<Solutionz> solutions;
 
-    @ManyToOne
-    @JoinColumn(name = "created_by", nullable = false)
-    private Userz createdBy;
+//    @ManyToOne
+//    @JoinColumn(name = "created_by", nullable = false)
+//    private Userz createdBy;
 
 //    public List<Solutionz> getSolutions() {
 //        return solutions;
@@ -39,13 +38,13 @@ public class Problemz {
 //        this.solutions = solutions;
 //    }
 
-    public Userz getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(Userz createdBy) {
-        this.createdBy = createdBy;
-    }
+//    public Userz getCreatedBy() {
+//        return createdBy;
+//    }
+//
+//    public void setCreatedBy(Userz createdBy) {
+//        this.createdBy = createdBy;
+//    }
 
     public UUID getId() {
         return id;
@@ -55,11 +54,11 @@ public class Problemz {
         this.id = id;
     }
 
-    public LocalDateTime getCreationTimestamp() {
+    public OffsetDateTime getCreationTimestamp() {
         return creationTimestamp;
     }
 
-    public void setCreationTimestamp(LocalDateTime creationTimestamp) {
+    public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
         this.creationTimestamp = creationTimestamp;
     }
 

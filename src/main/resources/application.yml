@@ -9,7 +9,7 @@ spring:
   main:
     banner-mode: OFF
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=stackunderflow
+    url: jdbc:postgresql://localhost:5432/stackunderflow
     username: postgres
     password: admin
   jpa:

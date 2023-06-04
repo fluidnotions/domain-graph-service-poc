@@ -26,7 +26,7 @@ public class GraphQLBeanMapping {
         var createDateTime = original.getCreationTimestamp().atOffset(ZONE_OFFSET);
 
         result.setAvatar(original.getAvatar());
-        result.setCreateDateTime(createDateTime.toLocalDateTime());
+        result.setCreateDateTime(createDateTime);
         result.setDisplayName(original.getDisplayName());
         result.setEmail(original.getEmail());
         result.setId(original.getId().toString());
@@ -37,14 +37,14 @@ public class GraphQLBeanMapping {
 
     public static Problem mapToGraphql(Problemz original) {
         var result = new Problem();
-        var createDateTime = original.getCreationTimestamp().atOffset(ZONE_OFFSET);
-        var author = mapToGraphql(original.getCreatedBy());
+        var createDateTime = original.getCreationTimestamp();
+//        var author = mapToGraphql(original.getCreatedBy());
 
         var tagList = List.of(original.getTags().split(","));
 
-        result.setAuthor(author);
+//        result.setAuthor(author);
         result.setContent(original.getContent());
-        result.setCreateDateTime(createDateTime.toLocalDateTime());
+        result.setCreateDateTime(createDateTime);
         result.setId(original.getId().toString());
 
         result.setTags(tagList);
@@ -65,7 +65,7 @@ public class GraphQLBeanMapping {
 
     public static Solution mapToGraphql(Solutionz original) {
         var result = new Solution();
-        var createDateTime = original.getCreationTimestamp().atOffset(ZONE_OFFSET);
+        var createDateTime = original.getCreationTimestamp();
         var author = mapToGraphql(original.getCreatedBy());
         var category = StringUtils.equalsIgnoreCase(
                 original.getCategory(), SolutionCategory.SOLUTION.toString()) ?
@@ -74,7 +74,7 @@ public class GraphQLBeanMapping {
         result.setAuthor(author);
         result.setCategory(category);
         result.setContent(original.getContent());
-        result.setCreateDateTime(createDateTime.toLocalDateTime());
+        result.setCreateDateTime(createDateTime);
         result.setId(original.getId().toString());
         result.setVoteAsBadCount(original.getVoteBadCount());
         result.setVoteAsGoodCount(original.getVoteGoodCount());
@@ -88,7 +88,7 @@ public class GraphQLBeanMapping {
         var expiryDateTime = original.getExpiryTimestamp().atOffset(ZONE_OFFSET);
 
         result.setAccessToken(original.getAuthToken());
-        result.setExpireTime(expiryDateTime.toLocalDateTime());
+        result.setExpireTime(expiryDateTime);
 
         return result;
     }
@@ -97,7 +97,7 @@ public class GraphQLBeanMapping {
         var result = new Problemz();
 
         result.setContent(original.getContent());
-        result.setCreatedBy(author);
+//        result.setCreatedBy(author);
         result.setId(UUID.randomUUID());
 //        result.setSolutions(Collections.emptyList());
         result.setTags(String.join(",", original.getTags()));

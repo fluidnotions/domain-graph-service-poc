@@ -3,6 +3,7 @@ scalar Date
 scalar NonNegativeInt
 scalar DateTime
 
+
 union SmartSearchResults = Show | Book
 
 type Query {
