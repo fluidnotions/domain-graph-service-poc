@@ -1,5 +1,6 @@
 package com.fluidnotions.components.stackunderflow.resolvers;
 
+import com.fluidnotions.databases.stackunderflow.entity.Problemz;
 import com.fluidnotions.databases.stackunderflow.respoitory.ProblemzRepository;
 import com.fluidnotions.databases.stackunderflow.util.GraphQLBeanMapping;
 import com.fluidnotions.graphql.generated.DgsConstants;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import reactor.core.publisher.Flux;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -34,14 +36,18 @@ public class ProblemResolver {
 
     @DgsData(parentType = DgsConstants.QUERY_TYPE, field = DgsConstants.QUERY.ProblemDetail)
     public Problem getProblemDetail(@InputArgument(name = "id") String problemId) {
-        return null;
+        var problemz = problemzRepository.findById(UUID.fromString(problemId));
+        return problemz.map(GraphQLBeanMapping::mapToGraphql).orElse(null);
     }
 
     @DgsData(parentType = DgsConstants.MUTATION.TYPE_NAME, field = DgsConstants.MUTATION.ProblemCreate)
     public ProblemResponse createProblem(
             @RequestHeader(name = "authToken", required = true) String authToken,
             @InputArgument(name = "problem") ProblemCreateInput problemCreateInput) {
-        return null;
+
+        Problemz entity = GraphQLBeanMapping.mapToEntity(problemCreateInput, null);
+        var problemz = problemzRepository.save(entity);
+        return new ProblemResponse(GraphQLBeanMapping.mapToGraphql(problemz));
     }
 
     @DgsData(parentType = DgsConstants.SUBSCRIPTION_TYPE, field = DgsConstants.SUBSCRIPTION.ProblemAdded)

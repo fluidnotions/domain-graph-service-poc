@@ -23,6 +23,9 @@ dependencies {
     implementation 'com.netflix.graphql.dgs:graphql-dgs-subscriptions-websockets-autoconfigure'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
     runtimeOnly 'org.postgresql:postgresql'
 
     implementation 'net.datafaker:datafaker:1.9.0'
@@ -35,13 +38,13 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-//sourceSets {
-//    main {
-//        java {
-//            exclude 'java/com/fluidnotions/databases/stackunderflow/util/GraphQLBeanMapping.java'
-//        }
-//    }
-//}
+sourceSets {
+    main {
+        java {
+            exclude 'java/com/fluidnotions/databases/stackunderflow/util/JpaGraphqlMapper.java'
+        }
+    }
+}
 
 
 generateJava {

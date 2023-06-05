@@ -1,0 +1,56 @@
+package com.fluidnotions.databases.stackunderflow.util;
+
+import com.fluidnotions.databases.stackunderflow.entity.Problemz;
+import com.fluidnotions.databases.stackunderflow.entity.Solutionz;
+import com.fluidnotions.databases.stackunderflow.entity.Userz;
+import com.fluidnotions.databases.stackunderflow.entity.UserzToken;
+import com.fluidnotions.graphql.generated.types.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.util.List;
+
+@Mapper
+public abstract class JpaGraphqlMapper {
+
+
+    private String listToStr(List<String> value) {
+        return String.join(",", value);
+    }
+
+    private List<String> strToList(String value) {
+        return List.of(value.split(","));
+    }
+
+    private OffsetDateTime localDateTimeToOffsetDateTime(LocalDateTime value) {
+        return value == null ? null : value.atOffset(OffsetDateTime.now().getOffset());
+    }
+
+    public abstract Solutionz mapToEntity(SolutionCreateInput original);
+
+    private LocalDateTime offsetDateTimeToLocalDateTime(OffsetDateTime value) {
+        return value == null ? null : value.toLocalDateTime();
+    }
+
+    @Mapping(target = "tags", expression = "java(listToStr(original.getTags()))")
+//    @Mapping(target = "creationTimestamp", expression = "java(localDateTimeToOffsetDateTime(LocalDateTime.now()))")
+    public abstract Problemz mapToEntity(ProblemCreateInput original);
+
+    @Mapping(target = "tags", expression = "java(strToList(original.getTags()))")
+//    @Mapping(target = "creationTimestamp", expression = "java(offsetDateTimeToLocalDateTime(original.getCreationTimestamp()))")
+    public abstract Problem mapToGraphql(Problemz original);
+
+    public abstract UserAuthToken mapToGraphql(UserzToken original);
+
+    public abstract Solution mapToGraphql(Solutionz original);
+
+    public abstract User mapToGraphql(Userz original);
+
+    public abstract Problemz mapToEntity(ProblemCreateInput original, Userz author);
+
+    public abstract Solutionz mapToEntity(SolutionCreateInput original, Userz author, Problemz problemz);
+
+    public abstract Userz mapToEntity(UserCreateInput original);
+}

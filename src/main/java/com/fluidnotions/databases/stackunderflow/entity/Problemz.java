@@ -1,15 +1,15 @@
 package com.fluidnotions.databases.stackunderflow.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
-//@Table(name = "problemz")
+@Table(name = "problemz")
 public class Problemz {
 
     @Id
@@ -22,21 +22,21 @@ public class Problemz {
     private String content;
     private String tags;
 
-//    @OneToMany(mappedBy = "problemz")
-//    @OrderBy("creationTimestamp desc")
-//    private List<Solutionz> solutions;
+    @OneToMany(mappedBy = "problemz")
+    @OrderBy("creationTimestamp desc")
+    private List<Solutionz> solutions;
 
 //    @ManyToOne
 //    @JoinColumn(name = "created_by", nullable = false)
 //    private Userz createdBy;
 
-//    public List<Solutionz> getSolutions() {
-//        return solutions;
-//    }
-//
-//    public void setSolutions(List<Solutionz> solutions) {
-//        this.solutions = solutions;
-//    }
+    public List<Solutionz> getSolutions() {
+        return solutions;
+    }
+
+    public void setSolutions(List<Solutionz> solutions) {
+        this.solutions = solutions;
+    }
 
 //    public Userz getCreatedBy() {
 //        return createdBy;

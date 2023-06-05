@@ -1,16 +1,13 @@
 package com.fluidnotions.databases.stackunderflow.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
-//@Table(name = "solutionz")
+@Table(name = "solutionz")
 public class Solutionz {
 
     @Id
